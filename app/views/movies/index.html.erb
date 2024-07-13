@@ -1,0 +1,8 @@
+<h1> Book Your Movie Ticket </h1>
+
+<% @movies.each do |movie| %>
+  <div>
+    <h2>Movie Name: <%= movie.title %></h2>
+    <p>Genre: <%= movie.genre %></p>
+  </div>
+<% end %>
