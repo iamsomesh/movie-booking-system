@@ -1,0 +1,11 @@
+<h1>My Bookings</h1>
+
+<% @bookings.each do |booking| %>
+  <div class="booking">
+    <h2><%= booking.showtime.movie.title %></h2>
+    <p>Showtime: <%= booking.showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+    <p>Seat: <%= booking.seat_number %></p>
+    <%= link_to "View Details", booking_path(booking) %>
+    <%= link_to "Cancel Booking", booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+<% end %>

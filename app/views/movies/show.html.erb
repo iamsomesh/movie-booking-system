@@ -7,6 +7,7 @@
     <p>
       <%= showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %>
       (<%= pluralize(showtime.seats_available, 'seat') %> available)
+      <%= link_to "Book", new_booking_path(showtime_id: showtime.id) %>
     </p>
   </div>
 <% end %>

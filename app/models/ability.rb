@@ -11,6 +11,8 @@ class Ability
     else
       can :read, Movie
       can :read, Showtime
+      can :create, Booking
+      can [:read, :destroy], Booking, user_id: user.id
     end
   end
 end

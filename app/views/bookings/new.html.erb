@@ -1,0 +1,10 @@
+<h1>Book Ticket</h1>
+
+<h2><%= @showtime.movie.title %></h2>
+<p>Showtime: <%= @showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+<p>Available Seats: <%= @showtime.seats_available %></p>
+
+<%= form_with(model: @booking, local: true) do |form| %>
+  <%= form.hidden_field :showtime_id, value: @showtime.id %>
+  <%= form.submit "Confirm Booking" %>
+<% end %>

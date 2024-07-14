@@ -1,0 +1,7 @@
+<h1>Booking Confirmation</h1>
+
+<h2><%= @booking.showtime.movie.title %></h2>
+<p>Showtime: <%= @booking.showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %></p>
+<p>Seat: <%= @booking.seat_number %></p>
+
+<%= link_to "Back to My Bookings", bookings_path %>
