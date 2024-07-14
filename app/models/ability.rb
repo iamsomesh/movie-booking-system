@@ -10,6 +10,7 @@ class Ability
       can :manage, :all
     else
       can :read, Movie
+      can :read, Showtime
     end
   end
 end

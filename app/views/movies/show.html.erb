@@ -1,2 +1,16 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<h1>Movie Name: <%= @movie.title %></h1>
+<p>Genre: <%= @movie.genre %></p>
+
+<h2>Upcoming Showtimes</h2>
+<% @showtimes.each do |showtime| %>
+  <div class="showtime">
+    <p>
+      <%= showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %>
+      (<%= pluralize(showtime.seats_available, 'seat') %> available)
+    </p>
+  </div>
+<% end %>
+
+<% if can? :update, @movie %>
+  <%= link_to "Edit Movie", edit_movie_path(@movie) %>
+<% end %>

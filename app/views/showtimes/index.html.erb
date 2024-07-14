@@ -1,0 +1,21 @@
+<h1>All Upcoming Showtimes</h1>
+
+<% if can? :create, Showtime %>
+  <%= link_to 'New Showtime', new_showtime_path %>
+<% end %>
+
+<% @showtimes.each do |showtime| %>
+  <div class="showtime">
+    <h2><%= showtime.movie.title %></h2>
+    <p>
+      <%= showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %>
+      (<%= pluralize(showtime.seats_available, 'seat') %> available)
+    </p>
+    <% if can? :update, showtime %>
+      <%= link_to "Edit", edit_showtime_path(showtime) %>
+    <% end %>
+    <% if can? :destroy, showtime %>
+      <%= link_to "Delete", showtime_path(showtime), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+<% end %>

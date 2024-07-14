@@ -1,11 +1,12 @@
 class MoviesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
   load_and_authorize_resource
 
   def index
-    @movies = Movie.all
   end
 
   def show
+    @showtimes = @movie.showtimes.where('start_time > ?', Time.now).order(:start_time)
   end
 
   def new
