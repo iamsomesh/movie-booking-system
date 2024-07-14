@@ -14,12 +14,19 @@ class BookingsController < ApplicationController
   end
 
   def create
-    @booking.user = current_user
-    @booking.showtime.decrement!(:seats_available)
-    if @booking.save
-      redirect_to bookings_path, notice: 'Booking was successfully created.'
+    @booking = current_user.bookings.new(booking_params)
+    @showtime = @booking.showtime
+
+    if @showtime.seats_available > 0
+      @booking.seat_number = @showtime.next_available_seat
+      if @booking.save
+        @showtime.decrement!(:seats_available)
+        redirect_to @booking, notice: 'Booking was successfully created.'
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to movies_path, alert: 'Sorry, this showtime is fully booked.'
     end
   end
 
