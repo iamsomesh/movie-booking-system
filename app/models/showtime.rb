@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Showtime < ApplicationRecord
   belongs_to :movie
   has_many :bookings

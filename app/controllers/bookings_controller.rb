@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingsController < ApplicationController
   load_and_authorize_resource
 
@@ -5,8 +7,7 @@ class BookingsController < ApplicationController
     @bookings = @bookings.includes(showtime: :movie).order('showtimes.start_time')
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @showtime = Showtime.find(params[:showtime_id])
@@ -17,7 +18,7 @@ class BookingsController < ApplicationController
     @booking = current_user.bookings.new(booking_params)
     @showtime = @booking.showtime
 
-    if @showtime.seats_available > 0
+    if @showtime.seats_available.positive?
       @booking.seat_number = @showtime.next_available_seat
       if @booking.save
         @showtime.decrement!(:seats_available)

@@ -1,16 +1,16 @@
+# frozen_string_literal: true
+
 class MoviesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: %i[index show]
   load_and_authorize_resource
 
-  def index
-  end
+  def index; end
 
   def show
     @showtimes = @movie.showtimes.where('start_time > ?', Time.now).order(:start_time)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     if @movie.save
@@ -20,8 +20,7 @@ class MoviesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @movie.update(movie_params)
