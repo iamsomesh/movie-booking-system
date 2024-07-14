@@ -1,7 +1,7 @@
 <%= form_with(model: showtime, local: true) do |form| %>
   <% if showtime.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(showtime.errors.count, "error") %></h2>
+      <h2><%= pluralize(showtime.errors.count, "error") %> prohibited this showtime from being saved:</h2>
       <ul>
         <% showtime.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -10,22 +10,22 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
     <%= form.label :movie_id %>
     <%= form.collection_select :movie_id, @movies, :id, :title, prompt: "Select a movie" %>
   </div>
 
-  <div>
+  <div class="field">
     <%= form.label :start_time %>
     <%= form.datetime_select :start_time %>
   </div>
 
-  <div>
+  <div class="field">
     <%= form.label :seats_available %>
     <%= form.number_field :seats_available %>
   </div>
 
-  <div>
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

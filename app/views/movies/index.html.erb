@@ -5,7 +5,7 @@
 <% end %>
 
 <% @movies.each do |movie| %>
-  <div>
+  <div class="movie">
     <h2>Movie Name: <%= link_to movie.title, movie_path(movie) %></h2>
     <p>Genre: <%= movie.genre %></p>
     <% if can? :update, movie %>
