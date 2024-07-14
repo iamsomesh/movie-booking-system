@@ -1,8 +1,18 @@
 <h1> Book Your Movie Ticket </h1>
 
+<% if can? :create, Movie %>
+  <%= link_to 'New Movie', new_movie_path %>
+<% end %>
+
 <% @movies.each do |movie| %>
   <div>
     <h2>Movie Name: <%= movie.title %></h2>
     <p>Genre: <%= movie.genre %></p>
+    <% if can? :update, movie %>
+      <%= link_to "Edit", edit_movie_path(movie) %>
+    <% end %>
+    <% if can? :destroy, movie %>
+      <%= link_to "Delete", movie_path(movie), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    <% end %>
   </div>
 <% end %>
