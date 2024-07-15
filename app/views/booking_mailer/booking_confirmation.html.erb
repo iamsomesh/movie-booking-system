@@ -1,0 +1,13 @@
+<h1>Booking Confirmation</h1>
+
+<p>Dear <%= @user.email %>,</p>
+
+<p>Your booking has been confirmed. Here are the details:</p>
+
+<ul>
+  <li>Movie: <%= @movie.title %></li>
+  <li>Showtime: <%= @showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %></li>
+  <li>Seat: <%= @booking.seat_number %></li>
+</ul>
+
+<p>Thank you</p>

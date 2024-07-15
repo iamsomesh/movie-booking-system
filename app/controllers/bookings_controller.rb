@@ -22,7 +22,8 @@ class BookingsController < ApplicationController
       @booking.seat_number = @showtime.next_available_seat
       if @booking.save
         @showtime.decrement!(:seats_available)
-        redirect_to @booking, notice: 'Booking was successfully created.'
+        BookingMailer.with(booking: @booking).booking_confirmation.deliver_later
+        redirect_to @booking, notice: 'Successfully Booked. A confirmation email has been sent.'
       else
         render :new
       end
