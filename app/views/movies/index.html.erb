@@ -6,8 +6,13 @@
 
 <% @movies.each do |movie| %>
   <div class="movie">
-    <h2>Movie Name: <%= link_to movie.title, movie_path(movie) %></h2>
-    <p>Genre: <%= movie.genre %></p>
+    <% if movie.poster.attached? %>
+      <%= image_tag movie.poster, style: "width: 300px" %>
+    <% else %>
+      <p>No poster available</p>
+    <% end %>
+    <h2><%= link_to movie.title, movie_path(movie) %></h2>
+    <p><%= link_to movie.genre, movie_path(movie) %></p>
     <% if can? :update, movie %>
       <%= link_to "Edit", edit_movie_path(movie) %>
     <% end %>
