@@ -6,6 +6,11 @@
 
 <% @showtimes.each do |showtime| %>
   <div class="showtime">
+    <% if showtime.movie.poster.attached? %>
+      <%= image_tag showtime.movie.poster, style: "width: 300px" %>
+    <% else %>
+      <p>No poster available</p>
+    <% end %>
     <h2><%= showtime.movie.title %></h2>
     <p>
       <%= showtime.start_time.strftime("%B %d, %Y at %I:%M %p") %>
